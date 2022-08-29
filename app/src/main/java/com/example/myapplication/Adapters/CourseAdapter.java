@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Entity.Course;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.CourseDetails;
+import com.example.myapplication.UI.TermDetails;
 
 import java.util.List;
 
@@ -34,11 +35,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     final Course current = mCourses.get(position);
                     //This is where we set up what happens on click
                     Intent intent = new Intent(context, CourseDetails.class);
-                    intent.putExtra("id", current.getCourseID());
-                    intent.putExtra("name", current.getCourseTitle());
-                    intent.putExtra("startDate", current.getCourseStartDate());
-                    intent.putExtra("endDate", current.getCourseEndDate());
-                    intent.putExtra("status", current.getCourseStatus());
+                    intent.putExtra("courseID", current.getCourseID());
+                    intent.putExtra("courseName", current.getCourseTitle());
+                    intent.putExtra("courseStartDate", current.getCourseStartDate());
+                    intent.putExtra("courseEndDate", current.getCourseEndDate());
+                    intent.putExtra("courseStatus", current.getCourseStatus());
                     intent.putExtra("instructorName", current.getInstructorName());
                     intent.putExtra("instructorPhone", current.getInstructorPhone());
                     intent.putExtra("instructorEmail", current.getInstructorEmail());

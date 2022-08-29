@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.myapplication.Adapters.CourseAdapter;
 import com.example.myapplication.Adapters.TermAdapter;
@@ -56,7 +55,8 @@ public class TermDetails extends AppCompatActivity {
         //Setting our RecyclerView and grabbing the list of courses
         RecyclerView recyclerView = findViewById(R.id.recViewCoursesInTermDetails);
         CourseRepository courseRepo = new CourseRepository(getApplication());
-        List<Course> courses = courseRepo.getCoursesByTermID(termID);
+        //List<Course> courses = courseRepo.getCoursesByTermID(termID);
+        List<Course> courses = courseRepo.getAllCourses();
         System.out.println("courses=");
         System.out.println(courses);
 

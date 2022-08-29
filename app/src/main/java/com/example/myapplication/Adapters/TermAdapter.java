@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Entity.Term;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.TermDetails;
-import com.example.myapplication.UI.TermList;
 
 import java.util.List;
 
@@ -47,7 +45,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     }
 
     private List<Term> mTerms;
-    private LiveData<List<Term>> mmTerms;
     private final Context context;
     private final LayoutInflater mInflator;
     public TermAdapter(Context context) {
