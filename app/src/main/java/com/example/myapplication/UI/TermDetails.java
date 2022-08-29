@@ -39,14 +39,6 @@ public class TermDetails extends AppCompatActivity {
         setContentView(R.layout.activity_term_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        RecyclerView recyclerView=findViewById(R.id.recViewCoursesInTermDetails);
-        TermRepository termRepo = new TermRepository(getApplication());
-        CourseRepository courseRepo = new CourseRepository(getApplication());
-        List<Course> courses = courseRepo.getAllCourses();
-        final CourseAdapter adapter = new CourseAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setCourses(courses);
         //Grabbing the fields from the activity and placing them in variables
         editTextTermTitle = findViewById(R.id.editTextTermTitle);
         editTextStartDate = findViewById(R.id.editTextStartDate);
@@ -60,8 +52,23 @@ public class TermDetails extends AppCompatActivity {
         editTextTermTitle.setText(termName);
         editTextStartDate.setText(termStartDate);
         editTextEndDate.setText(termEndDate);
+
+        //Setting our RecyclerView and grabbing the list of courses
+        RecyclerView recyclerView = findViewById(R.id.recViewCoursesInTermDetails);
+        CourseRepository courseRepo = new CourseRepository(getApplication());
+        List<Course> courses = courseRepo.getCoursesByTermID(termID);
+        System.out.println("courses=");
+        System.out.println(courses);
+
+        //Setting the Adapter for the RecyclerView
+        final CourseAdapter adapter = new CourseAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setCourses(courses);
+
         //Making the Repository
 //        repo = new Repository(getApplication());
+        //courseRepo = new CourseRepository(getApplication());
     }
 
     //SAVES MODIFIED TERM TO DB, OR ADDS NEW ONE IF THE ID IS -1!

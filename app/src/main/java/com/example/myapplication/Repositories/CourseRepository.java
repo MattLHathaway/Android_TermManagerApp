@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 public class CourseRepository {
     private CourseDAO courseDAO;
     private List<Course> allCourses;
+    private List<Course> allCoursesForTerm;
 
     private static int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -28,7 +29,6 @@ public class CourseRepository {
         courseDAO = AppDB.courseDAO();
         allCourses = courseDAO.getAllCourses();
     }
-
 
     public List<Course>getAllCourses(){
         databaseExecutor.execute(()->{
@@ -54,6 +54,20 @@ public class CourseRepository {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Course> getCoursesByTermID(int termID) {
+
+        databaseExecutor.execute(()->{
+            allCoursesForTerm = courseDAO.getCoursesByTerm(termID);
+        });
+        //Delay allows time for it to grab stuff from Database
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return allCoursesForTerm;
     }
 
     public void update(Course course) {

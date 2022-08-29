@@ -27,7 +27,7 @@ public interface CourseDAO {
 
     @Delete
     void deleteCourse(Course course);
-
+    
     @Query("SELECT * FROM courses WHERE courseID = :courseID")
     Course getCourseByID(int courseID);
 
